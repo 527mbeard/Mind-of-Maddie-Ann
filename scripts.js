@@ -243,24 +243,49 @@ function renderFeatured() {
 // ---------------------------------------------------------------
 // RENDER SIDEBAR
 // ---------------------------------------------------------------
-function renderSidebar() {
+// function renderSidebar() {
   // Top 4 most-read articles
-  const topArticles = [...articles].sort((a, b) => b.reads - a.reads).slice(0, 4);
+//   const topArticles = [...articles].sort((a, b) => b.reads - a.reads).slice(0, 4);
 
-  document.getElementById('sidebarMostRead').innerHTML = topArticles.map((article, index) => `
-    <div class="sidebar__item" onclick="openArticle(${article.id})">
-      <div class="sidebar__item-number">0${index + 1}</div>
-      <div>
-        <div class="sidebar__item-title">${article.reviewtitle}</div>
-        <div class="sidebar__item-meta">${article.worktitle} · ${article.author}</div>
-      </div>
-    </div>
-  `).join('');
+//   document.getElementById('sidebarMostRead').innerHTML = topArticles.map((article, index) => `
+//     <div class="sidebar__item" onclick="openArticle(${article.id})">
+//       <div class="sidebar__item-number">0${index + 1}</div>
+//       <div>
+//         <div class="sidebar__item-title">${article.reviewtitle}</div>
+//         <div class="sidebar__item-meta">${article.worktitle} · ${article.author}</div>
+//       </div>
+//     </div>
+//   `).join('');
 
-  // Category counts
-  document.getElementById('countFilm').textContent = articles.filter(a => a.cat === 'film').length + ' reviews';
-  document.getElementById('countBook').textContent = articles.filter(a => a.cat === 'book').length + ' reviews';
-  document.getElementById('countTv').textContent = articles.filter(a => a.cat === 'tv').length + ' reviews';
+//   // Category counts
+//   document.getElementById('countFilm').textContent = articles.filter(a => a.cat === 'film').length + ' reviews';
+//   document.getElementById('countBook').textContent = articles.filter(a => a.cat === 'book').length + ' reviews';
+//   document.getElementById('countTv').textContent = articles.filter(a => a.cat === 'tv').length + ' reviews';
+// }
+
+function renderSidebar() {
+
+  // ------------------------------------------------
+  // CATEGORY COUNTS
+  // ------------------------------------------------
+  const filmCount = document.getElementById('countFilm');
+  const bookCount = document.getElementById('countBook');
+  const tvCount = document.getElementById('countTv');
+
+  if (filmCount) {
+    filmCount.textContent =
+      articles.filter(a => a.cat === 'film').length + ' reviews';
+  }
+
+  if (bookCount) {
+    bookCount.textContent =
+      articles.filter(a => a.cat === 'book').length + ' reviews';
+  }
+
+  if (tvCount) {
+    tvCount.textContent =
+      articles.filter(a => a.cat === 'tv').length + ' reviews';
+  }
 }
 
 
