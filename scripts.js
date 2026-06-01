@@ -378,19 +378,6 @@ function openArticle(id) {
 
 
 // ---------------------------------------------------------------
-// STAR RATING INPUT (write form)
-// ---------------------------------------------------------------
-// function setRating(n) {
-//   currentRating = n;
-//   const ratingDescriptions = ['', 'One star — significant reservations', 'Two stars — more bad than good', 'Three stars — worth your time', 'Four stars — very good', 'Five stars — essential'];
-//   document.getElementById('ratingLabel').textContent = ratingDescriptions[n];
-//   document.querySelectorAll('.star-input__btn').forEach((btn, i) => {
-//     btn.classList.toggle('active', i < n);
-//   });
-// }
-
-
-// ---------------------------------------------------------------
 // CHARACTER COUNTER (review textarea)
 // ---------------------------------------------------------------
 function updateCharCount() {
