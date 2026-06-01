@@ -48,6 +48,10 @@ mageenta #D63384 */
   --color-tag-tv-text: #744D62;
   --color-tag-tv-border: rgba(116, 77, 98, 0.2);
 
+  --color-tag-food-bg: rgba(212, 140, 44, 0.10);
+  --color-tag-food-text: #D48C2C;
+  --color-tag-food-border: rgba(212, 140, 44, 0.20);
+
 
   /* Fonts — swap these to change the whole site's feel */
   --font-display: 'Playfair Display', serif;
@@ -140,7 +144,7 @@ body {
 }
 
 a,
-a span{
+a span {
   text-decoration: none;
 }
 
@@ -1510,7 +1514,7 @@ body {
 
   padding: 0 2rem;
 
-  background: rgba(247,244,238,0.85);
+  background: rgba(247, 244, 238, 0.85);
 
   backdrop-filter: blur(14px);
 
@@ -1518,7 +1522,7 @@ body {
 }
 
 body.dark-mode .nav {
-  background: rgba(17,17,17,0.8);
+  background: rgba(17, 17, 17, 0.8);
 }
 
 .nav__logo {
@@ -1639,11 +1643,9 @@ body.dark-mode .nav {
   border-radius: 2rem;
 
   background:
-    linear-gradient(
-      135deg,
-      rgba(200,168,75,0.15),
-      rgba(91,35,51,0.15)
-    );
+    linear-gradient(135deg,
+      rgba(200, 168, 75, 0.15),
+      rgba(91, 35, 51, 0.15));
 
   border: 1px solid var(--color-border);
 
@@ -1693,7 +1695,7 @@ body.dark-mode .nav {
 
   font-family: var(--font-display);
 
-  font-size: clamp(2rem,5vw,3.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
 
   margin-bottom: 2rem;
 }
@@ -1714,7 +1716,7 @@ body.dark-mode .nav {
 .about-grid {
 
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
 
   gap: 1.5rem;
 
@@ -1856,4 +1858,10 @@ body.dark-mode .nav {
   .about-quote p {
     font-size: 1.5rem;
   }
+}
+
+.tag--food {
+  background: var(--color-tag-food-bg);
+  color: var(--color-tag-food-text);
+  border: 1px solid var(--color-tag-food-border);
 }

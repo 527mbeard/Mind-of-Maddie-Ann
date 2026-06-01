@@ -95,6 +95,24 @@ const articles = [
            <p>If this is the show losing its audience, it is doing so magnificently.</p>`,
     verdict: 'Punishing, precise, and the best drama on television.',
     author: 'R. Diaz', date: 'August 8, 2024', reads: 2600
+  },
+  {
+    id: 6,
+    cat: 'food',
+    rating: 5,
+    worktitle: 'Federici\'s Pizza',
+    streaming: 'Freehold, NJ',
+    year: '2026',
+    reviewtitle: 'The Best Thin Crust in Monmouth County',
+    subtitle: 'A local institution that still lives up to the hype.',
+    excerpt: 'Some pizza places survive on nostalgia. Federici\'s survives because the pizza is actually incredible.',
+    body: `
+    <p>Review text here...</p>
+  `,
+    verdict: 'Worth the trip every time.',
+    author: 'Madison Beard',
+    date: 'May 31, 2026',
+    reads: 0
   }
 ];
 
@@ -130,7 +148,8 @@ function buildTagHTML(cat) {
   const map = {
     film: ['tag--film', 'Film'],
     book: ['tag--book', 'Book'],
-    tv: ['tag--tv', 'TV']
+    tv: ['tag--tv', 'TV'],
+    food: ['tag--food', 'Food']
   };
   const [cls, label] = map[cat] || ['tag--film', 'Other'];
   return `<span class="tag ${cls}">${label}</span>`;
@@ -152,7 +171,10 @@ const categoryIcons = {
            <rect x="8" y="18" width="54" height="36" rx="3" stroke="#8A9ABB" stroke-width="2" opacity="0.5"/>
            <line x1="20" y1="54" x2="20" y2="62" stroke="#8A9ABB" stroke-width="2" opacity="0.5"/>
            <line x1="50" y1="54" x2="50" y2="62" stroke="#8A9ABB" stroke-width="2" opacity="0.5"/>
-         </svg>`
+         </svg>`,
+  food: `<svg width="70" height="70" viewBox="0 0 70 70">
+            <path d="M20 15v20M25 15v20M30 15v20M25 35v20" stroke="#D48C2C" stroke-width="2" opacity="0.6"/>
+            <path d="M45 15c0 8-2 12-2 18v22" stroke="#D48C2C" stroke-width="2" opacity="0.6"/></svg>`
 };
 
 
@@ -174,7 +196,6 @@ function renderFeed() {
     list.innerHTML = `
       <div class="article-list__empty">
         No reviews yet in this category.<br><br>
-        <button class="btn-primary" onclick="showView('write')">Be the first →</button>
       </div>`;
     return;
   }
@@ -244,7 +265,7 @@ function renderFeatured() {
 // RENDER SIDEBAR
 // ---------------------------------------------------------------
 // function renderSidebar() {
-  // Top 4 most-read articles
+// Top 4 most-read articles
 //   const topArticles = [...articles].sort((a, b) => b.reads - a.reads).slice(0, 4);
 
 //   document.getElementById('sidebarMostRead').innerHTML = topArticles.map((article, index) => `
@@ -271,6 +292,7 @@ function renderSidebar() {
   const filmCount = document.getElementById('countFilm');
   const bookCount = document.getElementById('countBook');
   const tvCount = document.getElementById('countTv');
+  const foodCount = document.getElementById('countFood');
 
   if (filmCount) {
     filmCount.textContent =
@@ -285,6 +307,11 @@ function renderSidebar() {
   if (tvCount) {
     tvCount.textContent =
       articles.filter(a => a.cat === 'tv').length + ' reviews';
+  }
+
+  if (foodCount) {
+    foodCount.textContent =
+      articles.filter(a => a.cat === 'food').length + ' reviews';
   }
 }
 
@@ -353,14 +380,14 @@ function openArticle(id) {
 // ---------------------------------------------------------------
 // STAR RATING INPUT (write form)
 // ---------------------------------------------------------------
-function setRating(n) {
-  currentRating = n;
-  const ratingDescriptions = ['', 'One star — significant reservations', 'Two stars — more bad than good', 'Three stars — worth your time', 'Four stars — very good', 'Five stars — essential'];
-  document.getElementById('ratingLabel').textContent = ratingDescriptions[n];
-  document.querySelectorAll('.star-input__btn').forEach((btn, i) => {
-    btn.classList.toggle('active', i < n);
-  });
-}
+// function setRating(n) {
+//   currentRating = n;
+//   const ratingDescriptions = ['', 'One star — significant reservations', 'Two stars — more bad than good', 'Three stars — worth your time', 'Four stars — very good', 'Five stars — essential'];
+//   document.getElementById('ratingLabel').textContent = ratingDescriptions[n];
+//   document.querySelectorAll('.star-input__btn').forEach((btn, i) => {
+//     btn.classList.toggle('active', i < n);
+//   });
+// }
 
 
 // ---------------------------------------------------------------
@@ -389,11 +416,12 @@ function renderCategoryPage(cat) {
   const grid = document.getElementById('categoryGrid');
 
   const titles = {
-    all: 'All Reviews',
-    film: 'Film Reviews',
-    book: 'Book Reviews',
-    tv: 'TV Reviews'
-  };
+  all: 'All Reviews',
+  film: 'Film Reviews',
+  book: 'Book Reviews',
+  tv: 'TV Reviews',
+  food: 'Food Reviews'
+};
 
   document.getElementById('categoryTitle').textContent =
     titles[cat];

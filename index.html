@@ -50,6 +50,12 @@
           TV
         </a>
       </li>
+      
+      <li>
+        <a class="nav__link" href="#" onclick="renderCategoryPage('food'); return false;">
+          Food
+        </a>
+      </li>
 
       <li>
         <a href="about.html">
@@ -96,8 +102,9 @@
     <section class="hero">
       <div class="hero__left">
         <p class="hero__eyebrow">The critic's corner</p>
-         <h1 class="hero__title">The Hottest Movies, TV Shows, and Books: <em>Reviewed</em> </h1>
-        <p class="hero__description">Thoughtful criticism and personal essays on film, literature, and television by an aspiring critic and secret cheese lover.</p>
+        <h1 class="hero__title">The Hottest Movies, TV Shows, and Books: <em>Reviewed</em> </h1>
+        <p class="hero__description">Thoughtful criticism and personal essays on film, literature, and television by an
+          aspiring critic and secret cheese lover.</p>
       </div>
 
       <div class="hero__right">
@@ -130,6 +137,7 @@
           <button class="filter-bar__btn" onclick="filterCat('film', this)">Film</button>
           <button class="filter-bar__btn" onclick="filterCat('book', this)">Books</button>
           <button class="filter-bar__btn" onclick="filterCat('tv', this)">TV</button>
+          <button class="filter-bar__btn" onclick="filterCat('food', this)"> Food </button>
           <div class="filter-bar__divider"></div>
           <span class="filter-bar__label">Sort:</span>
           <select class="filter-bar__sort" onchange="sortArticles(this.value)">
@@ -159,6 +167,10 @@
           <div class="sidebar__category" onclick="filterCat('tv', null)">
             <span class="sidebar__category-name" style="color: var(--color-tag-tv-text);">📺 Television</span>
             <span class="sidebar__category-count" id="countTv">0 reviews</span>
+          </div>
+          <div class="sidebar__category" onclick="filterCat('food', null)">
+            <span class="sidebar__category-name"> 🍽️ Food </span>
+            <span class="sidebar__category-count" id="countFood"> 0 reviews </span>
           </div>
         </div>
 
