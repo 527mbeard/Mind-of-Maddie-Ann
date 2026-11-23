@@ -118,7 +118,7 @@ let currentSort = 'newest';
 
 // ARTICLES FROM GOOGLE SHEETS
 
-const API = "https://script.google.com/macros/s/AKfycbz2iQCVxRx9b5qK1Bs1mr99B5xArXuoyIuNhR0_8J18dZr99yc81wS6_o7H9ThqGutH_Q/exec";
+const API = "https://script.google.com/macros/s/AKfycbw6Z9GNfCZOurVccFeRu3vSMtyPax6Z7LO-IDaHOPenjOnyLDS726xb2cvogjJf0l1wSQ/exec";
 
 let articles = [];
 
@@ -141,6 +141,80 @@ async function loadArticles() {
 }
 
 
+/*************************************************
+ * LOAD ROTATING BANNER FROM GOOGLE SHEETS
+ *************************************************/
+
+
+async function loadBanner() {
+
+  const track = document.getElementById("tickerTrack");
+
+  if (!track) return;
+
+  try {
+
+    const response = await fetch(`${API}?type=banner`);
+
+    if (!response.ok) {
+      throw new Error("Banner request failed.");
+    }
+
+    const data = await response.json();
+
+    console.log("Banner data received:", data);
+
+    if (!Array.isArray(data)) {
+      throw new Error(data.error || "Banner data is not an array.");
+    }
+
+    const messages = data
+      .map(item => item.text)
+      .filter(text => typeof text === "string" && text.trim() !== "");
+
+    if (messages.length === 0) {
+      track.innerHTML =
+        '<span class="ticker__item">No banner messages available.</span>';
+      return;
+    }
+
+    const escapeHTML = text => String(text).replace(
+      /[&<>"']/g,
+      character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[character]
+    );
+
+    const bannerHTML = messages.map(message => `
+      <span class="ticker__item">
+        ${escapeHTML(message)}
+      </span>
+    `).join("");
+
+    // Duplicate messages for the scrolling animation
+    track.innerHTML = bannerHTML + bannerHTML;
+
+  } catch (error) {
+
+    console.error("Banner loading error:", error);
+
+    track.innerHTML = `
+      <span class="ticker__item">
+        Banner temporarily unavailable.
+      </span>
+    `;
+
+  }
+
+}
+
+
+
+
 async function startWebsite() {
 
   const list = document.getElementById("articleList");
@@ -154,6 +228,11 @@ async function startWebsite() {
     renderFeed();
     renderFeatured();
     renderSidebar();
+
+    // Load rotating banner separately
+    loadBanner().catch(error => {
+      console.error("Banner loading error:", error);
+    });
 
   } catch (error) {
 
