@@ -18,103 +18,156 @@ let currentSort = 'newest';
 //         creator, year, reviewtitle, subtitle, excerpt,
 //         body (HTML string), verdict, author, date, reads
 // ---------------------------------------------------------------
-const articles = [
-  {
-    id: 0, cat: 'film', rating: 5,
-    worktitle: 'Daredevil: Born Again', streaming: 'Edward Berger', year: '2024',
-    reviewtitle: 'God is in the Doubt',
-    subtitle: `Berger's papal thriller is the most gripping film about institutional power in years.`,
-    excerpt: 'Conclave works on every level it attempts. As a thriller, it is gripping; as a meditation on faith, it is searching; as a portrait of institutional rot, it is unsparing.',
-    body: `<p>Conclave works on every level it attempts. As a thriller, it is gripping; as a meditation on faith, it is searching; as a portrait of institutional rot, it is unsparing. Edward Berger proves himself a director who understands that the most dramatic spaces are rooms where old men argue quietly.</p>
-           <p>Ralph Fiennes, playing Cardinal Lawrence, the dean tasked with overseeing the election of a new pope, gives what might be the performance of his career. His face is a weather system — clouds and clearings, sudden dark fronts. He is a man who no longer believes and cannot stop believing.</p>
-           <blockquote>"A film about doubt in a world that rewards certainty is itself an act of courage."</blockquote>
-           <p>The screenplay adapts Robert Harris's novel with surgical precision. Every scene adds pressure. Every revelation reframes what came before. The pacing is that rarest of things in contemporary cinema: patient without being slow.</p>`,
-    verdict: 'The rare studio film that trusts its audience to sit with complexity.',
-    author: 'M. Calloway', date: 'January 14, 2025', reads: 2840
-  },
-  {
-    id: 1, cat: 'book', rating: 5,
-    worktitle: 'James', streaming: 'Percival Everett', year: '2024',
-    reviewtitle: 'The Slave Who Sees Everything',
-    subtitle: `Everett's reimagining of Huckleberry Finn is a masterpiece of controlled fury.`,
-    excerpt: 'James does not ask you to enjoy it. It asks you to reckon. Percival Everett takes one of American literature\'s most beloved adventures and recenters it on the enslaved man at its margins.',
-    body: `<p>James does not ask you to enjoy it. It asks you to reckon. Percival Everett takes one of American literature's most beloved adventures and recenters it on the enslaved man at its margins, producing a novel that feels both ancient and urgently contemporary.</p>
-           <p>The central conceit — that enslaved people speak a sophisticated internal language, performing ignorance for their enslavers — is devastating and brilliant. Jim, now James, is not the comic relief of Twain's original. He is watching. He has always been watching.</p>
-           <blockquote>"Everett doesn't rewrite Twain so much as he illuminates what was always there in the negative space."</blockquote>
-           <p>The prose has a sharpness to it, a tautness that Everett deploys carefully. There are passages of extraordinary beauty and passages of almost unbearable dread, sometimes within the same page.</p>`,
-    verdict: 'Devastating, brilliant, necessary. The novel of the year.',
-    author: 'P. Osei', date: 'December 2, 2024', reads: 1920
-  },
-  {
-    id: 2, cat: 'tv', rating: 4,
-    worktitle: 'Severance Season 2', streaming: 'Ben Stiller / Dan Erickson', year: '2025',
-    reviewtitle: 'The Labyrinth Deepens',
-    subtitle: 'Season two refuses easy answers — and is better for it.',
-    excerpt: 'Three years is a long time to wait for answers you don\'t fully get. Severance\'s second season is more interested in expanding its map than marking any X.',
-    body: `<p>Three years is a long time to wait for answers you don't fully get. Severance's second season is more interested in expanding its map than marking any X. That is occasionally frustrating and consistently fascinating.</p>
-           <p>What the season does brilliantly is deepen the mythology while keeping the human stakes legible. The Innies are not allegories — they are people, and their desperate grasp at selfhood is often genuinely moving.</p>
-           <blockquote>"To sever yourself from yourself is the ultimate corporate ask. The show never lets you forget it."</blockquote>
-           <p>The finale will divide viewers. It should. That it provokes argument means it's doing something real.</p>`,
-    verdict: 'Imperfect, ambitious, unmissable.',
-    author: 'D. Harrington', date: 'March 28, 2025', reads: 3100
-  },
-  {
-    id: 3, cat: 'film', rating: 4,
-    worktitle: 'The Substance', streaming: 'Coralie Fargeat', year: '2024',
-    reviewtitle: 'The Body Revolts',
-    subtitle: 'Fargeat\'s body-horror provocation is exhausting, excessive, and exactly right.',
-    excerpt: 'The Substance is not a subtle film. Coralie Fargeat is not a subtle director. Her follow-up to Revenge is louder, longer, more grotesque, and more genuinely disturbing in its implications than almost anything else in recent memory.',
-    body: `<p>The Substance is not a subtle film. Coralie Fargeat is not a subtle director. Her follow-up to <em>Revenge</em> is louder, longer, more grotesque, and more genuinely disturbing in its implications than almost anything else in recent memory.</p>
-           <p>Demi Moore gives the kind of performance that only emerges when a director gives an actor complete permission. She is funny, pathetic, magnificent, and tragic — sometimes within a single close-up.</p>
-           <p>The film's final act goes far. Then further. Then further still. Whether you see this as excess for its own sake or as the logical endpoint of the film's argument about how women are consumed and discarded will define your experience of it.</p>`,
-    verdict: 'Extreme, brilliant, uncomfortable. Essential.',
-    author: 'A. Chen', date: 'November 5, 2024', reads: 2200
-  },
-  {
-    id: 4, cat: 'book', rating: 4,
-    worktitle: 'Intermezzo', streaming: 'Sally Rooney', year: '2024',
-    reviewtitle: 'Rooney Grows Up',
-    subtitle: 'Her fourth novel is her warmest and her most structurally daring.',
-    excerpt: 'Sally Rooney\'s detractors have always had a point. Intermezzo doesn\'t silence them, but it does something more interesting: it makes you care so much you stop listening to them.',
-    body: `<p>Sally Rooney's detractors have always had a point. Her sentences can be airless; her characters' crises provincial. <em>Intermezzo</em> doesn't silence the critics, but it does something more interesting: it makes you care so much you stop listening to them.</p>
-           <p>The novel follows two brothers grieving their father, moving between Dublin and a small Irish town, between youth and middle age, between styles — one brother rendered in Rooney's trademark free indirect speech, the other in a strange, staccato present tense that ultimately pays off.</p>
-           <blockquote>"Grief, Rooney suggests, does not equalise us. It reveals us."</blockquote>
-           <p>What's new here is warmth. Rooney has always been smart; here she is also kind.</p>`,
-    verdict: 'Her most emotionally generous novel. A real step forward.',
-    author: 'T. Walsh', date: 'October 22, 2024', reads: 1750
-  },
-  {
-    id: 5, cat: 'tv', rating: 5,
-    worktitle: 'The Bear — Season 3', streaming: 'Christopher Storer', year: '2024',
-    reviewtitle: 'Everything Is at Stake',
-    subtitle: 'Divisive on release, essential in retrospect.',
-    excerpt: 'Season three of The Bear was called too slow, too literary, too in love with its own misery. These criticisms are not wrong. They are also beside the point.',
-    body: `<p>Season three of The Bear was called too slow, too literary, too in love with its own misery. These criticisms are not wrong. They are also beside the point. Christopher Storer made a season of television that behaves like a great short story collection — formally daring, occasionally maddening, haunting in accumulation.</p>
-           <p>The episode structured around Carmy's fever dream — a parade of culinary ghosts — is the most formally ambitious thing a streaming service has produced in years.</p>
-           <blockquote>"To be this devoted is to be this isolated. The season earns its gloom."</blockquote>
-           <p>If this is the show losing its audience, it is doing so magnificently.</p>`,
-    verdict: 'Punishing, precise, and the best drama on television.',
-    author: 'R. Diaz', date: 'August 8, 2024', reads: 2600
-  },
-  {
-    id: 6,
-    cat: 'food',
-    rating: 5,
-    worktitle: 'Federici\'s Pizza',
-    streaming: 'Freehold, NJ',
-    year: '2026',
-    reviewtitle: 'The Best Thin Crust in Monmouth County',
-    subtitle: 'A local institution that still lives up to the hype.',
-    excerpt: 'Some pizza places survive on nostalgia. Federici\'s survives because the pizza is actually incredible.',
-    body: `
-    <p>Review text here...</p>
-  `,
-    verdict: 'Worth the trip every time.',
-    author: 'Madison Beard',
-    date: 'May 31, 2026',
-    reads: 0
+// const articles = [
+//   {
+//     id: 0, cat: 'film', rating: 5,
+//     worktitle: 'Daredevil: Born Again', streaming: 'Edward Berger', year: '2024',
+//     reviewtitle: 'God is in the Doubt',
+//     subtitle: `Berger's papal thriller is the most gripping film about institutional power in years.`,
+//     excerpt: 'Conclave works on every level it attempts. As a thriller, it is gripping; as a meditation on faith, it is searching; as a portrait of institutional rot, it is unsparing.',
+//     body: `<p>Conclave works on every level it attempts. As a thriller, it is gripping; as a meditation on faith, it is searching; as a portrait of institutional rot, it is unsparing. Edward Berger proves himself a director who understands that the most dramatic spaces are rooms where old men argue quietly.</p>
+//            <p>Ralph Fiennes, playing Cardinal Lawrence, the dean tasked with overseeing the election of a new pope, gives what might be the performance of his career. His face is a weather system — clouds and clearings, sudden dark fronts. He is a man who no longer believes and cannot stop believing.</p>
+//            <blockquote>"A film about doubt in a world that rewards certainty is itself an act of courage."</blockquote>
+//            <p>The screenplay adapts Robert Harris's novel with surgical precision. Every scene adds pressure. Every revelation reframes what came before. The pacing is that rarest of things in contemporary cinema: patient without being slow.</p>`,
+//     verdict: 'The rare studio film that trusts its audience to sit with complexity.',
+//     author: 'M. Calloway', date: 'January 14, 2025', reads: 2840
+//   },
+//   {
+//     id: 1, cat: 'book', rating: 5,
+//     worktitle: 'James', streaming: 'Percival Everett', year: '2024',
+//     reviewtitle: 'The Slave Who Sees Everything',
+//     subtitle: `Everett's reimagining of Huckleberry Finn is a masterpiece of controlled fury.`,
+//     excerpt: 'James does not ask you to enjoy it. It asks you to reckon. Percival Everett takes one of American literature\'s most beloved adventures and recenters it on the enslaved man at its margins.',
+//     body: `<p>James does not ask you to enjoy it. It asks you to reckon. Percival Everett takes one of American literature's most beloved adventures and recenters it on the enslaved man at its margins, producing a novel that feels both ancient and urgently contemporary.</p>
+//            <p>The central conceit — that enslaved people speak a sophisticated internal language, performing ignorance for their enslavers — is devastating and brilliant. Jim, now James, is not the comic relief of Twain's original. He is watching. He has always been watching.</p>
+//            <blockquote>"Everett doesn't rewrite Twain so much as he illuminates what was always there in the negative space."</blockquote>
+//            <p>The prose has a sharpness to it, a tautness that Everett deploys carefully. There are passages of extraordinary beauty and passages of almost unbearable dread, sometimes within the same page.</p>`,
+//     verdict: 'Devastating, brilliant, necessary. The novel of the year.',
+//     author: 'P. Osei', date: 'December 2, 2024', reads: 1920
+//   },
+//   {
+//     id: 2, cat: 'tv', rating: 4,
+//     worktitle: 'Severance Season 2', streaming: 'Ben Stiller / Dan Erickson', year: '2025',
+//     reviewtitle: 'The Labyrinth Deepens',
+//     subtitle: 'Season two refuses easy answers — and is better for it.',
+//     excerpt: 'Three years is a long time to wait for answers you don\'t fully get. Severance\'s second season is more interested in expanding its map than marking any X.',
+//     body: `<p>Three years is a long time to wait for answers you don't fully get. Severance's second season is more interested in expanding its map than marking any X. That is occasionally frustrating and consistently fascinating.</p>
+//            <p>What the season does brilliantly is deepen the mythology while keeping the human stakes legible. The Innies are not allegories — they are people, and their desperate grasp at selfhood is often genuinely moving.</p>
+//            <blockquote>"To sever yourself from yourself is the ultimate corporate ask. The show never lets you forget it."</blockquote>
+//            <p>The finale will divide viewers. It should. That it provokes argument means it's doing something real.</p>`,
+//     verdict: 'Imperfect, ambitious, unmissable.',
+//     author: 'D. Harrington', date: 'March 28, 2025', reads: 3100
+//   },
+//   {
+//     id: 3, cat: 'film', rating: 4,
+//     worktitle: 'The Substance', streaming: 'Coralie Fargeat', year: '2024',
+//     reviewtitle: 'The Body Revolts',
+//     subtitle: 'Fargeat\'s body-horror provocation is exhausting, excessive, and exactly right.',
+//     excerpt: 'The Substance is not a subtle film. Coralie Fargeat is not a subtle director. Her follow-up to Revenge is louder, longer, more grotesque, and more genuinely disturbing in its implications than almost anything else in recent memory.',
+//     body: `<p>The Substance is not a subtle film. Coralie Fargeat is not a subtle director. Her follow-up to <em>Revenge</em> is louder, longer, more grotesque, and more genuinely disturbing in its implications than almost anything else in recent memory.</p>
+//            <p>Demi Moore gives the kind of performance that only emerges when a director gives an actor complete permission. She is funny, pathetic, magnificent, and tragic — sometimes within a single close-up.</p>
+//            <p>The film's final act goes far. Then further. Then further still. Whether you see this as excess for its own sake or as the logical endpoint of the film's argument about how women are consumed and discarded will define your experience of it.</p>`,
+//     verdict: 'Extreme, brilliant, uncomfortable. Essential.',
+//     author: 'A. Chen', date: 'November 5, 2024', reads: 2200
+//   },
+//   {
+//     id: 4, cat: 'book', rating: 4,
+//     worktitle: 'Intermezzo', streaming: 'Sally Rooney', year: '2024',
+//     reviewtitle: 'Rooney Grows Up',
+//     subtitle: 'Her fourth novel is her warmest and her most structurally daring.',
+//     excerpt: 'Sally Rooney\'s detractors have always had a point. Intermezzo doesn\'t silence them, but it does something more interesting: it makes you care so much you stop listening to them.',
+//     body: `<p>Sally Rooney's detractors have always had a point. Her sentences can be airless; her characters' crises provincial. <em>Intermezzo</em> doesn't silence the critics, but it does something more interesting: it makes you care so much you stop listening to them.</p>
+//            <p>The novel follows two brothers grieving their father, moving between Dublin and a small Irish town, between youth and middle age, between styles — one brother rendered in Rooney's trademark free indirect speech, the other in a strange, staccato present tense that ultimately pays off.</p>
+//            <blockquote>"Grief, Rooney suggests, does not equalise us. It reveals us."</blockquote>
+//            <p>What's new here is warmth. Rooney has always been smart; here she is also kind.</p>`,
+//     verdict: 'Her most emotionally generous novel. A real step forward.',
+//     author: 'T. Walsh', date: 'October 22, 2024', reads: 1750
+//   },
+//   {
+//     id: 5, cat: 'tv', rating: 5,
+//     worktitle: 'The Bear — Season 3', streaming: 'Christopher Storer', year: '2024',
+//     reviewtitle: 'Everything Is at Stake',
+//     subtitle: 'Divisive on release, essential in retrospect.',
+//     excerpt: 'Season three of The Bear was called too slow, too literary, too in love with its own misery. These criticisms are not wrong. They are also beside the point.',
+//     body: `<p>Season three of The Bear was called too slow, too literary, too in love with its own misery. These criticisms are not wrong. They are also beside the point. Christopher Storer made a season of television that behaves like a great short story collection — formally daring, occasionally maddening, haunting in accumulation.</p>
+//            <p>The episode structured around Carmy's fever dream — a parade of culinary ghosts — is the most formally ambitious thing a streaming service has produced in years.</p>
+//            <blockquote>"To be this devoted is to be this isolated. The season earns its gloom."</blockquote>
+//            <p>If this is the show losing its audience, it is doing so magnificently.</p>`,
+//     verdict: 'Punishing, precise, and the best drama on television.',
+//     author: 'R. Diaz', date: 'August 8, 2024', reads: 2600
+//   },
+//   {
+//     id: 6,
+//     cat: 'food',
+//     rating: 5,
+//     worktitle: 'Federici\'s Pizza',
+//     streaming: 'Freehold, NJ',
+//     year: '2026',
+//     reviewtitle: 'The Best Thin Crust in Monmouth County',
+//     subtitle: 'A local institution that still lives up to the hype.',
+//     excerpt: 'Some pizza places survive on nostalgia. Federici\'s survives because the pizza is actually incredible.',
+//     body: `
+//     <p>Review text here...</p>
+//   `,
+//     verdict: 'Worth the trip every time.',
+//     author: 'Madison Beard',
+//     date: 'May 31, 2026',
+//     reads: 0
+//   }
+// ];
+
+// ARTICLES FROM GOOGLE SHEETS
+
+const API = "https://script.google.com/macros/s/AKfycbz2iQCVxRx9b5qK1Bs1mr99B5xArXuoyIuNhR0_8J18dZr99yc81wS6_o7H9ThqGutH_Q/exec";
+
+let articles = [];
+
+
+async function loadArticles() {
+
+  const response = await fetch(API);
+
+  if (!response.ok) {
+    throw new Error("Could not load articles");
   }
-];
+
+  const data = await response.json();
+
+  if (!Array.isArray(data)) {
+    throw new Error(data.error || "Invalid article data");
+  }
+
+  return data;
+}
+
+
+async function startWebsite() {
+
+  const list = document.getElementById("articleList");
+
+  list.innerHTML = "<p>Loading reviews...</p>";
+
+  try {
+
+    articles = await loadArticles();
+
+    renderFeed();
+    renderFeatured();
+    renderSidebar();
+
+  } catch (error) {
+
+    console.error("Article loading error:", error);
+
+    list.innerHTML = `
+      <div class="article-list__empty">
+        Unable to load reviews. Please try again later.
+      </div>
+    `;
+
+  }
+
+}
 
 
 // ---------------------------------------------------------------
@@ -154,6 +207,28 @@ function buildTagHTML(cat) {
   const [cls, label] = map[cat] || ['tag--film', 'Other'];
   return `<span class="tag ${cls}">${label}</span>`;
 }
+
+
+// Builds the category tag AND additional article tags
+function buildArticleTagsHTML(article) {
+  const categoryTag = buildTagHTML(article.cat);
+
+  const extraTags = Array.isArray(article.tags)
+    ? article.tags
+    : [];
+
+  const extraTagsHTML = extraTags.map(tag => `
+    <span class="topic-tag">${tag.trim()}</span>
+  `).join('');
+
+  return `
+    <div class="article-tags">
+      ${categoryTag}
+      ${extraTagsHTML}
+    </div>
+  `;
+}
+
 
 // SVG thumbnail icons for each category
 const categoryIcons = {
@@ -204,8 +279,8 @@ function renderFeed() {
   list.innerHTML = data.map(article => `
     <div class="article-card" onclick="openArticle(${article.id})">
       <div class="article-card__body">
-        <div class="article-card__tags">${buildTagHTML(article.cat)}</div>
-        <h2 class="article-card__title">${article.reviewtitle}</h2>
+      <div class="article-card__tags">${buildArticleTagsHTML(article)}</div>        
+      <h2 class="article-card__title">${article.reviewtitle}</h2>
         ${article.subtitle ? `<p class="article-card__subtitle">${article.subtitle}</p>` : ''}
         <p class="article-card__excerpt">${article.excerpt}</p>
         <div class="article-card__meta">
@@ -219,47 +294,50 @@ function renderFeed() {
         </div>
       </div>
       <div class="article-card__image">
-        ${categoryIcons[article.cat] || ''}
+        ${article.image
+      ? `<img src="${article.image}" alt="${article.worktitle}">`
+      : categoryIcons[article.cat] || ''
+    }
       </div>
     </div>
   `).join('');
 }
 
-function renderFeatured() {
-  const latest = [...articles].sort((a, b) => b.id - a.id)[0];
+// function renderFeatured() {
+//   const latest = [...articles].sort((a, b) => b.id - a.id)[0];
 
-  const container = document.getElementById('featuredCard');
+//   const container = document.getElementById('featuredCard');
 
-  container.innerHTML = `
-    <div class="featured-card" onclick="openArticle(${latest.id})">
+//   container.innerHTML = `
+//     <div class="featured-card" onclick="openArticle(${latest.id})">
 
-      <div class="featured-card__image">
-        ${categoryIcons[latest.cat] || ''}
+//       <div class="featured-card__image">
+//         ${categoryIcons[latest.cat] || ''}
 
-        <div class="featured-card__badge">
-          Latest Review
-        </div>
-      </div>
+//         <div class="featured-card__badge">
+//           Latest Review
+//         </div>
+//       </div>
 
-      <span class="tag tag--${latest.cat}">
-        ${latest.cat.toUpperCase()}
-      </span>
+//       <span class="tag tag--${latest.cat}">
+//         ${latest.cat.toUpperCase()}
+//       </span>
 
-      <div class="stars">
-        ${buildStarsHTML(latest.rating)}
-      </div>
+//       <div class="stars">
+//         ${buildStarsHTML(latest.rating)}
+//       </div>
 
-      <h3 class="featured-card__title">
-        ${latest.reviewtitle}
-      </h3>
+//       <h3 class="featured-card__title">
+//         ${latest.reviewtitle}
+//       </h3>
 
-      <p class="featured-card__meta">
-        ${latest.streaming} · ${latest.year} · ${latest.cat.toUpperCase()}
-      </p>
+//       <p class="featured-card__meta">
+//         ${latest.streaming} · ${latest.year} · ${latest.cat.toUpperCase()}
+//       </p>
 
-    </div>
-  `;
-}
+//     </div>
+//   `;
+// }
 
 // ---------------------------------------------------------------
 // RENDER SIDEBAR
@@ -283,6 +361,62 @@ function renderFeatured() {
 //   document.getElementById('countBook').textContent = articles.filter(a => a.cat === 'book').length + ' reviews';
 //   document.getElementById('countTv').textContent = articles.filter(a => a.cat === 'tv').length + ' reviews';
 // }
+
+
+function renderFeatured() {
+
+  const latest =
+    articles.find(article => article.featured) ||
+    [...articles].sort((a, b) => b.id - a.id)[0];
+
+  const container = document.getElementById("featuredCard");
+
+  if (!latest) {
+    container.innerHTML = "";
+    return;
+  }
+
+  container.innerHTML = `
+
+    <div class="featured-card"
+         onclick="openArticle(${latest.id})">
+
+      <div class="featured-card__image">
+
+        ${latest.image
+      ? `<img src="${latest.image}" alt="${latest.worktitle}">`
+      : categoryIcons[latest.cat] || ""
+    }
+
+        <div class="featured-card__badge">
+          Editor's Pick
+        </div>
+
+      </div>
+
+      ${buildArticleTagsHTML(latest)}
+
+      <div class="stars">
+        ${buildStarsHTML(latest.rating)}
+      </div>
+
+      <h3 class="featured-card__title">
+        ${latest.reviewtitle}
+      </h3>
+
+     <div class="featured-card__meta">
+      ${latest.created
+      ? `<span>Originally released: ${latest.created}</span>`
+      : ''
+    }
+    </div>
+
+    </div>
+
+  `;
+
+}
+
 
 function renderSidebar() {
 
@@ -346,22 +480,37 @@ function openArticle(id) {
 
   article.reads++; // increment read count
 
-  const workMeta = [article.worktitle, article.streaming, article.year].filter(Boolean).join(' · ');
+  const workMeta = article.created
+    ? `Originally released: ${article.created}`
+    : '';
 
   document.getElementById('articleDetail').innerHTML = `
     <div class="article-page">
       <button class="article-page__back" onclick="showView('home')">← Back to reviews</button>
-      <div>${buildTagHTML(article.cat)}</div>
+        <div class="article-page__tags">${buildArticleTagsHTML(article)}</div>
       <h1 class="article-page__title">${article.reviewtitle}</h1>
       ${article.subtitle ? `<p class="article-page__subtitle">${article.subtitle}</p>` : ''}
-      <div class="article-page__byline">
-        <span class="article-page__author">By <strong>${article.author}</strong></span>
-        <span class="article-page__date">${article.date}</span>
-        <div class="article-page__rating">
-          <div class="stars">${buildStarsHTML(article.rating, '1rem')}</div>
-          <span class="article-page__rating-number">${article.rating}/5</span>
-        </div>
+      
+    <div class="article-page__byline">
+    <span class="article-page__author">
+      By <strong>${article.author}</strong>
+    </span>
+    ${article.date ? `
+    <span class="article-page__date">
+      Review published: ${article.date}
+    </span>
+     ` : ''}
+
+    <div class="article-page__rating">
+      <div class="stars">
+        ${buildStarsHTML(article.rating, '1rem')}
       </div>
+      <span class="article-page__rating-number">
+        ${article.rating}/5
+      </span>
+      </div>
+    </div>
+
       <p class="article-page__work-meta">${workMeta}</p>
       <div class="article-page__body">${article.body}</div>
       ${article.verdict ? `
@@ -403,12 +552,12 @@ function renderCategoryPage(cat) {
   const grid = document.getElementById('categoryGrid');
 
   const titles = {
-  all: 'All Reviews',
-  film: 'Film Reviews',
-  book: 'Book Reviews',
-  tv: 'TV Reviews',
-  food: 'Food Reviews'
-};
+    all: 'All Reviews',
+    film: 'Film Reviews',
+    book: 'Book Reviews',
+    tv: 'TV Reviews',
+    food: 'Food Reviews'
+  };
 
   document.getElementById('categoryTitle').textContent =
     titles[cat];
@@ -430,7 +579,7 @@ function renderCategoryPage(cat) {
 
       <div class="category-card__content">
 
-        ${buildTagHTML(article.cat)}
+      ${buildArticleTagsHTML(article)}
 
         <h2 class="category-card__title">
           ${article.reviewtitle}
@@ -478,13 +627,17 @@ function loadTheme() {
   }
 }
 
-loadTheme();
+// loadTheme();
 
 
 // ---------------------------------------------------------------
 // INIT
 // ---------------------------------------------------------------
-renderFeed();
-renderSidebar();
-renderFeatured();
+// renderFeed();
+// renderSidebar();
+// renderFeatured();
 
+loadTheme();
+
+// INIT
+startWebsite();

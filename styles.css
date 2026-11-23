@@ -1865,3 +1865,110 @@ body.dark-mode .nav {
   color: var(--color-tag-food-text);
   border: 1px solid var(--color-tag-food-border);
 }
+
+
+/* ==========================================
+   ARTICLE CATEGORY + TOPIC TAGS
+========================================== */
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.topic-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+
+  background: #f5eee9;
+  color: #8e1f2d;
+
+  border: 1px solid #e8d8d1;
+  border-radius: 3px;
+
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  line-height: 1.4;
+}
+
+/* Article detail page */
+.article-page__tags {
+  margin-bottom: 18px;
+}
+
+/* Dark mode */
+.dark-mode .topic-tag {
+  background: #38252a;
+  color: #e9b8bd;
+  border-color: #624047;
+}
+
+
+/* ==========================================
+   CONSISTENT ARTICLE TAG ALIGNMENT
+========================================== */
+
+.article-tags,
+.article-card__tags,
+.article-page__tags,
+.category-card__content .article-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+/* Prevent extra spacing from interfering */
+.article-tags {
+  margin-bottom: 12px;
+}
+
+/* Keep category and topic tags at the same height */
+.article-tags .tag,
+.article-tags .topic-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+
+/* ==========================================
+   ARTICLE DATE INFORMATION
+========================================== */
+
+.article-page__work-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.article-page__date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--color-text-muted);
+}
+
+.featured-card__meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+}
